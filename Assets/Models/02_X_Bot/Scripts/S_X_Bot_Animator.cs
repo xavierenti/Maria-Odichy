@@ -6,12 +6,9 @@ public class S_X_Bot_Animator : MonoBehaviour
 {
     private S_X_Bot x_Bot;
     private Animator animator;
-    private PlayerImput playerImput;
-
     // Start is called before the first frame update
     void Awake()
     {
-        playerImput = GetComponent<PlayerImput>();
         x_Bot = GetComponent<S_X_Bot>();
         animator = GetComponent<Animator>();
     }
