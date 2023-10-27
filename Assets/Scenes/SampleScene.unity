@@ -2631,7 +2631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 493169248}
-  targetDistance: 5
+  targetDistance: 13.95
   cameraLerp: 5
 --- !u!4 &980486317 stripped
 Transform:
