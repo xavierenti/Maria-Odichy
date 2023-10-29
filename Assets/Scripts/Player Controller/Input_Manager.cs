@@ -12,6 +12,8 @@ public class Input_Manager : MonoBehaviour
     private float timeSinceJumpPressed = 0f;
     private Vector2 leftAxisValue = Vector2.zero;
 
+    public Vector3 puto;
+
 
     private void Awake()
     {
@@ -27,6 +29,7 @@ public class Input_Manager : MonoBehaviour
             
             playerInputs.Character.Jump.performed += JumpButtonPressed;
             playerInputs.Character.Move.performed += LeftAxisUpdate;
+            
 
             _INPUT_MANAGER = this;
             DontDestroyOnLoad(this.gameObject);
@@ -45,10 +48,12 @@ public class Input_Manager : MonoBehaviour
     private void JumpButtonPressed(InputAction.CallbackContext context)
     {
         timeSinceJumpPressed = 0f;
+        
     }
 
-    private void LeftAxisUpdate(InputAction.CallbackContext context)
+    public void LeftAxisUpdate(InputAction.CallbackContext context)
     {
         leftAxisValue = context.ReadValue<Vector2>();
+        puto = new Vector3(leftAxisValue.x, 0, leftAxisValue.y);
     }
 }

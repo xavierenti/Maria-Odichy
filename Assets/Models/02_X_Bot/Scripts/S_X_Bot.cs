@@ -11,17 +11,23 @@ public class S_X_Bot : MonoBehaviour
     [SerializeField]
     private float JumpForce;
     [SerializeField]
+    private float gravity = 20f;
+    [SerializeField]
     Camera camera;
+
+    Input_Manager input_Manager;
 
     private bool jump = false;
     private float currentSpeed = 0f;
     
 
     private CharacterController controller;
+    
 
     private Vector3 finalVelocity = Vector3.zero;
     private float velocityXZ = 5f;
-
+    
+    private float coyoteTime = 1f;
 
     // Start is called before the first frame update
     void Awake()
@@ -29,6 +35,7 @@ public class S_X_Bot : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         controller = GetComponent<CharacterController>();
+        input_Manager = GetComponent<Input_Manager>();
     }
     void Start()
     {
@@ -38,16 +45,12 @@ public class S_X_Bot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         Vector3 direction = Quaternion.Euler(0f, camera.transform.eulerAngles.y, 0f) * new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         direction.Normalize();
-
 
         //Calcular velocidad XZ
         finalVelocity.x = direction.x * velocityXZ;
         finalVelocity.z = direction.z * velocityXZ;
-
-        controller.Move(finalVelocity * Time.deltaTime);
 
         currentSpeed = finalVelocity.magnitude;
 
@@ -55,11 +58,40 @@ public class S_X_Bot : MonoBehaviour
 
         //transform.position += transform.forward * currentSpeed * Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.Z))
+        //Gravity
+        //Salto
+
+        direction.y = -1f;
+
+        if (controller.isGrounded)
         {
-            jump = true;
+            if(Input.GetKey(KeyCode.Space))
+            {
+                finalVelocity.y = JumpForce;
+            }
+            else
+            {
+                finalVelocity.y = direction.y * gravity * Time.deltaTime;
+                coyoteTime = 1f;
+            }
         }
+        else
+        {
+            finalVelocity.y += direction.y * gravity * Time.deltaTime;
+            coyoteTime -= Time.deltaTime;
+
+            if(Input.GetKey(KeyCode.Space)&& coyoteTime >= 0f)
+            {
+                finalVelocity.y = JumpForce;
+                coyoteTime = 0f;
+            }
+        }
+
         
+
+
+
+        controller.Move(finalVelocity * Time.deltaTime);
     }
 
     private void FixedUpdate()
