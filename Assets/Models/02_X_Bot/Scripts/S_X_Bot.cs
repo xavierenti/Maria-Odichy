@@ -19,6 +19,8 @@ public class S_X_Bot : MonoBehaviour
 
     private bool jump = false;
     private float currentSpeed = 0f;
+
+    private float jumpadForce = 100f;
     
 
     private CharacterController controller;
@@ -100,6 +102,14 @@ public class S_X_Bot : MonoBehaviour
             jump = false;
         }
         
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Jumpad")
+        {
+            finalVelocity.y = jumpadForce;
+        }
     }
 
     public float GetCurrentSpeed()
