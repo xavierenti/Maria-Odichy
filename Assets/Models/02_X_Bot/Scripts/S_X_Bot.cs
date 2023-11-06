@@ -47,7 +47,7 @@ public class S_X_Bot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = Quaternion.Euler(0f, camera.transform.eulerAngles.y, 0f) * new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        Vector3 direction = Quaternion.Euler(0f, camera.transform.eulerAngles.y, 0f) * new Vector3(Input_Manager._INPUT_MANAGER.GetLeftAxis().x, 0f, Input_Manager._INPUT_MANAGER.GetLeftAxis().y);
         direction.Normalize();
 
         //Calcular velocidad XZ

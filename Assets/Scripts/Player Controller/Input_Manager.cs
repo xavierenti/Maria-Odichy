@@ -51,9 +51,18 @@ public class Input_Manager : MonoBehaviour
         
     }
 
-    public void LeftAxisUpdate(InputAction.CallbackContext context)
+    private void LeftAxisUpdate(InputAction.CallbackContext context)
     {
         leftAxisValue = context.ReadValue<Vector2>();
-        puto = new Vector3(leftAxisValue.x, 0, leftAxisValue.y);
+
+        Debug.Log("Magnitude" + leftAxisValue.magnitude);
+        Debug.Log("Magnitude" + leftAxisValue.normalized);
+
+
+    }
+
+    public Vector2 GetLeftAxis()
+    {
+        return leftAxisValue;
     }
 }
