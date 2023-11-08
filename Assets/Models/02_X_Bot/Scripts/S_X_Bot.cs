@@ -15,6 +15,10 @@ public class S_X_Bot : MonoBehaviour
     [SerializeField]
     Camera camera;
 
+    //target 
+    private GameObject Jumi;
+
+
     Input_Manager input_Manager;
 
     private bool jump = false;
@@ -38,6 +42,8 @@ public class S_X_Bot : MonoBehaviour
 
         controller = GetComponent<CharacterController>();
         input_Manager = GetComponent<Input_Manager>();
+
+        Jumi = GameObject.FindGameObjectWithTag("Jumpad");
     }
     void Start()
     {
@@ -47,7 +53,7 @@ public class S_X_Bot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = Quaternion.Euler(0f, camera.transform.eulerAngles.y, 0f) * new Vector3(Input_Manager._INPUT_MANAGER.GetLeftAxis().x, 0f, Input_Manager._INPUT_MANAGER.GetLeftAxis().y);
+        Vector3 direction = Quaternion.Euler(0f, camera.transform.eulerAngles.y, 0f) * new Vector3(Input_Manager._INPUT_MANAGER.GetLeftAxisValue().x, 0f, Input_Manager._INPUT_MANAGER.GetLeftAxisValue().y);
         direction.Normalize();
 
         //Calcular velocidad XZ
@@ -67,9 +73,10 @@ public class S_X_Bot : MonoBehaviour
 
         if (controller.isGrounded)
         {
-            if(Input.GetKey(KeyCode.Space))
+            if(Input_Manager._INPUT_MANAGER.GetButtonSouthValue())
             {
                 finalVelocity.y = JumpForce;
+                jump = true;
             }
             else
             {
@@ -82,9 +89,10 @@ public class S_X_Bot : MonoBehaviour
             finalVelocity.y += direction.y * gravity * Time.deltaTime;
             coyoteTime -= Time.deltaTime;
 
-            if(Input.GetKey(KeyCode.Space)&& coyoteTime >= 0f)
+            if(Input_Manager._INPUT_MANAGER.GetButtonSouthValue() && coyoteTime >= 0f)
             {
                 finalVelocity.y = JumpForce;
+                jump = true;
                 coyoteTime = 0f;
             }
         }
@@ -106,7 +114,7 @@ public class S_X_Bot : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Jumpad")
+        if (collision.gameObject == Jumi)
         {
             finalVelocity.y = jumpadForce;
         }

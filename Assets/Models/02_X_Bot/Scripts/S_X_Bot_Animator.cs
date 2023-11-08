@@ -6,6 +6,7 @@ public class S_X_Bot_Animator : MonoBehaviour
 {
     private S_X_Bot x_Bot;
     private Animator animator;
+
     // Start is called before the first frame update
     void Awake()
     {
