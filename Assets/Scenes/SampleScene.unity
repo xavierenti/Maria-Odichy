@@ -2703,8 +2703,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 493169248}
-  targetDistance: 13.95
-  cameraLerp: 5
+  targetDistance: 5
+  cameraLerp: 10
 --- !u!4 &980486317 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4646160277296803439, guid: 2d1aed8ada79e4d4e99084037c3b094a, type: 3}
@@ -3744,7 +3744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb9faec470bc6b049a3e332acc712d40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.91
+      value: 4.73
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb9faec470bc6b049a3e332acc712d40, type: 3}
       propertyPath: m_LocalPosition.y
