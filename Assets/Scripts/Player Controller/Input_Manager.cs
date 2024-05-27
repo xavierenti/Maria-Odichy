@@ -12,6 +12,7 @@ public class Input_Manager : MonoBehaviour
     private float timeSinceJumpPressed = 0f;
     private Vector2 leftAxisValue = Vector2.zero;
     private bool southButton = false;
+    private bool leftShoulder = false;
     private Vector2 rightAxisValue = Vector2.zero;
 
 
@@ -20,7 +21,7 @@ public class Input_Manager : MonoBehaviour
 
     private void Awake()
     {
-        if( _INPUT_MANAGER != null && _INPUT_MANAGER != this)
+        if (_INPUT_MANAGER != null && _INPUT_MANAGER != this)
         {
             Destroy(this.gameObject);
         }
@@ -29,7 +30,7 @@ public class Input_Manager : MonoBehaviour
 
             playerInputs = new PlayerInputActions();
             playerInputs.Character.Enable();
-            
+
             playerInputs.Character.Jump.performed += JumpButtonPressed;
             playerInputs.Character.Move.performed += LeftAxisUpdate;
             playerInputs.Character.RotateCamera.performed += RightAxisUpdate;
@@ -39,7 +40,7 @@ public class Input_Manager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
-        
+
 
     // Update is called once per frame
     void Update()
@@ -53,6 +54,7 @@ public class Input_Manager : MonoBehaviour
     {
         timeSinceJumpPressed = 0f;
         this.southButton = true;
+        this.leftShoulder = false;
 
     }
 
@@ -64,6 +66,10 @@ public class Input_Manager : MonoBehaviour
         Debug.Log("Magnitude" + leftAxisValue.normalized);
 
 
+    }
+    private void LeftShoulderUpdate(InputAction.CallbackContext context)
+    {
+        this.leftShoulder = true;
     }
 
     private void RightAxisUpdate(InputAction.CallbackContext context)
@@ -80,6 +86,12 @@ public class Input_Manager : MonoBehaviour
     {
         return southButton;
     }
+
+    public bool GetLeftShoulderValue()
+    {
+        return leftShoulder;
+    }
+
 
     public Vector2 GetRightAxisValue()
     {

@@ -22,17 +22,24 @@ public class S_X_Bot : MonoBehaviour
     Input_Manager input_Manager;
 
     private bool jump = false;
+    private bool Crunch = false;
+    private float CrunchHeight = 1;
+    private float CrunchCenter = 0.1f;
+    private float heightDefault = 0;
+    private float CenterDefault = 0;
+
+
     private float currentSpeed = 0f;
 
     private float jumpadForce = 100f;
-    
+
 
     private CharacterController controller;
-    
+
 
     private Vector3 finalVelocity = Vector3.zero;
     private float velocityXZ = 5f;
-    
+
     private float coyoteTime = 1f;
 
     // Start is called before the first frame update
@@ -73,7 +80,7 @@ public class S_X_Bot : MonoBehaviour
 
         if (controller.isGrounded)
         {
-            if(Input_Manager._INPUT_MANAGER.GetButtonSouthValue())
+            if (Input_Manager._INPUT_MANAGER.GetButtonSouthValue())
             {
                 finalVelocity.y = JumpForce;
                 jump = true;
@@ -89,7 +96,7 @@ public class S_X_Bot : MonoBehaviour
             finalVelocity.y += direction.y * gravity * Time.deltaTime;
             coyoteTime -= Time.deltaTime;
 
-            if(Input_Manager._INPUT_MANAGER.GetButtonSouthValue() && coyoteTime >= 0f)
+            if (Input_Manager._INPUT_MANAGER.GetButtonSouthValue() && coyoteTime >= 0f)
             {
                 finalVelocity.y = JumpForce;
                 jump = true;
@@ -97,7 +104,21 @@ public class S_X_Bot : MonoBehaviour
             }
         }
 
-        
+        if (Input_Manager._INPUT_MANAGER.GetLeftShoulderValue() && controller.isGrounded)
+        {
+            Crunch = !Crunch;
+
+            if (Crunch)
+            {
+                controller.center = new Vector3(controller.center.x, CrunchCenter, controller.center.z);
+                controller.height = CrunchHeight;
+            }
+            else
+            {
+                controller.center = new Vector3(controller.center.x, CenterDefault, controller.center.z);
+                controller.height = heightDefault;
+            }
+        }
 
 
 
@@ -106,15 +127,16 @@ public class S_X_Bot : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (jump) {
+        if (jump)
+        {
             jump = false;
         }
-        
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == Jumi)
+        if (collision.gameObject.tag == "Jumpad")
         {
             finalVelocity.y = jumpadForce;
         }
