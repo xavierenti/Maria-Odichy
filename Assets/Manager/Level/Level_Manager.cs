@@ -24,5 +24,5 @@ public class Level_Manager : MonoBehaviour
         }
     }
 
-    public void AppendStar() => actualCoins++;
+    public void GainCoin() => actualCoins++;
 }

@@ -7,14 +7,14 @@ public class S_X_Bot_Animator : MonoBehaviour
     private S_X_Bot x_Bot;
     private Animator animator;
 
-    // Start is called before the first frame update
+    // cogemos al player i el animator al qual le daremos los datos
     void Awake()
     {
         x_Bot = GetComponent<S_X_Bot>();
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+    // Pasamos la velocidad del player al animator
     void Update()
     {
         animator.SetFloat("velocity", x_Bot.GetCurrentSpeed());

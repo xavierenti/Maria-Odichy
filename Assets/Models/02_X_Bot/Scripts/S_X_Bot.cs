@@ -13,7 +13,7 @@ public class S_X_Bot : MonoBehaviour
     [SerializeField]
     private float gravity = 20f;
     [SerializeField]
-    Camera camera;
+    private Camera thecamera;
 
     //target 
     private GameObject Jumi;
@@ -30,9 +30,6 @@ public class S_X_Bot : MonoBehaviour
 
 
     private float currentSpeed = 0f;
-
-    private float jumpadForce = 100f;
-
 
     private CharacterController controller;
 
@@ -60,7 +57,7 @@ public class S_X_Bot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = Quaternion.Euler(0f, camera.transform.eulerAngles.y, 0f) * new Vector3(Input_Manager._INPUT_MANAGER.GetLeftAxisValue().x, 0f, Input_Manager._INPUT_MANAGER.GetLeftAxisValue().y);
+        Vector3 direction = Quaternion.Euler(0f, thecamera.transform.eulerAngles.y, 0f) * new Vector3(Input_Manager._INPUT_MANAGER.GetLeftAxisValue().x, 0f, Input_Manager._INPUT_MANAGER.GetLeftAxisValue().y);
         direction.Normalize();
 
         //Calcular velocidad XZ
@@ -80,6 +77,7 @@ public class S_X_Bot : MonoBehaviour
 
         if (controller.isGrounded)
         {
+            jump = false;
             if (Input_Manager._INPUT_MANAGER.GetButtonSouthValue())
             {
                 finalVelocity.y = JumpForce;
@@ -93,6 +91,7 @@ public class S_X_Bot : MonoBehaviour
         }
         else
         {
+            jump = false;
             finalVelocity.y += direction.y * gravity * Time.deltaTime;
             coyoteTime -= Time.deltaTime;
 
@@ -125,21 +124,10 @@ public class S_X_Bot : MonoBehaviour
         controller.Move(finalVelocity * Time.deltaTime);
     }
 
-    private void FixedUpdate()
+    //Rebotar
+    public void Rebotar(Vector3 jumpDirecton, float jumpForce)
     {
-        if (jump)
-        {
-            jump = false;
-        }
-
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Jumpad")
-        {
-            finalVelocity.y = jumpadForce;
-        }
+        finalVelocity = jumpDirecton * jumpForce;
     }
 
     public float GetCurrentSpeed()

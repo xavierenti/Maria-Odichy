@@ -1196,9 +1196,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 5
   maxSpeed: 5
-  JumpForce: 20
+  JumpForce: 10
   gravity: 20
-  camera: {fileID: 963194227}
+  thecamera: {fileID: 963194227}
 --- !u!143 &493169253
 CharacterController:
   m_ObjectHideFlags: 0
