@@ -14,10 +14,9 @@ public class Jumpad : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.gameObject == player)
+        if (collision.gameObject == player)
         {
             s_X_Bot.Rebotar(transform.up, reboundForce);
         }

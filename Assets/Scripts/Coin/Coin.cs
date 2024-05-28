@@ -14,10 +14,9 @@ public class Coin : MonoBehaviour
         transform.Rotate(0, rotateSpeed, 0, Space.World);
     }
 
-    
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject == target)
+        if (collision.gameObject == target)
         {
             // Añadimos punto al LevelManage
             Level_Manager._LEVEL_MANAGER.GainCoin();
