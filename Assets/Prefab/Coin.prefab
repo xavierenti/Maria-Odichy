@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7743031653315405245}
   m_Layer: 0
   m_Name: Coin
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -34.05, y: -43.02, z: -29.5}
 --- !u!33 &1242689399465407226
 MeshFilter:
@@ -104,8 +104,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.74355185, y: 0.74014306, z: 0.7436507}
-  m_Center: {x: 0, y: 0.00001642108, z: -0.0000001937151}
+  m_Size: {x: 1.1565229, y: 0.9350149, z: 0.96955985}
+  m_Center: {x: 0.0628292, y: -0.009337756, z: 0.02795014}
 --- !u!114 &7743031653315405245
 MonoBehaviour:
   m_ObjectHideFlags: 0

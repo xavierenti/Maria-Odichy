@@ -5827,10 +5827,6 @@ PrefabInstance:
       value: Jumpad
       objectReference: {fileID: 0}
     - target: {fileID: 8466919353245124586, guid: d44c6278a62a3d546bdf261227e2ec98, type: 3}
-      propertyPath: cc
-      value: 
-      objectReference: {fileID: 493169253}
-    - target: {fileID: 8466919353245124586, guid: d44c6278a62a3d546bdf261227e2ec98, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 493169246}

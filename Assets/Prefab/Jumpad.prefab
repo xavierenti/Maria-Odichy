@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &5040142085933033236
 MeshFilter:
@@ -104,8 +104,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.552597, y: 2.2, z: 0.34405565}
-  m_Center: {x: 0, y: 1.1, z: 0}
+  m_Size: {x: 1.7919807, y: 2.6836736, z: 0.5495504}
+  m_Center: {x: -0.08870888, y: 1.1846411, z: 0.10274735}
 --- !u!114 &8466919353245124586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +118,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5519c4bf97c9ef4a96aabbaab663c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cc: {fileID: 0}
-  y: 5
-  z: 5
+  player: {fileID: 0}
+  reboundForce: 0

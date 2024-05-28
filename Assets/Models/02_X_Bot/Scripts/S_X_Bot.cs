@@ -15,11 +15,11 @@ public class S_X_Bot : MonoBehaviour
     [SerializeField]
     private Camera thecamera;
 
-    //target 
-    private GameObject Jumi;
-
 
     Input_Manager input_Manager;
+
+    //target 
+    private GameObject Jumi;
 
     private bool jump = false;
     private bool Crunch = false;
@@ -128,6 +128,11 @@ public class S_X_Bot : MonoBehaviour
     public void Rebotar(Vector3 jumpDirecton, float jumpForce)
     {
         finalVelocity = jumpDirecton * jumpForce;
+    }
+
+    public void Die()
+    {
+        GameManager._GAME_MANAGER.PlayerHasDied();
     }
 
     public float GetCurrentSpeed()
