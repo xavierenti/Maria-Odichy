@@ -21,6 +21,7 @@ public class S_X_Bot : MonoBehaviour
     //target 
     private GameObject Jumi;
 
+    private float directionY= -1;
     private bool jump = false;
     private bool Crunch = false;
     private float CrunchHeight = 1;
@@ -28,6 +29,13 @@ public class S_X_Bot : MonoBehaviour
     private float heightDefault = 0;
     private float CenterDefault = 0;
 
+    private float nextJumpTimer = 0;
+    private float maxJumpTimer = 2;
+    private float jumoCount = 0;
+    private float maxJump = 3;
+    private float jum1 = 1;
+    private float jum2 = 1.2f;
+    private float jum3 = 1.8f;
 
     private float currentSpeed = 0f;
 
@@ -57,7 +65,9 @@ public class S_X_Bot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = Quaternion.Euler(0f, thecamera.transform.eulerAngles.y, 0f) * new Vector3(Input_Manager._INPUT_MANAGER.GetLeftAxisValue().x, 0f, Input_Manager._INPUT_MANAGER.GetLeftAxisValue().y);
+        Vector3 direction = Vector3.zero;
+
+        direction = Quaternion.Euler(0f, thecamera.transform.eulerAngles.y, 0f) * new Vector3(Input_Manager._INPUT_MANAGER.GetLeftAxisValue().x, 0f, Input_Manager._INPUT_MANAGER.GetLeftAxisValue().y);
         direction.Normalize();
 
         //Calcular velocidad XZ
@@ -76,7 +86,63 @@ public class S_X_Bot : MonoBehaviour
         direction.y = -1f;
         
         if (controller.isGrounded)
-        {/*
+        {
+            Vector3 directiony = Vector3.up * directionY;
+            directiony.Normalize();
+
+            nextJumpTimer += Time.deltaTime;
+            if (Input_Manager._INPUT_MANAGER.GetButtonSouthValue())
+            {
+                if (Crunch)
+                {
+
+                }
+                else
+                {
+                    jumoCount++;
+                    if (nextJumpTimer <= maxJumpTimer)
+                    {
+                        if (jumoCount == maxJump)
+                        {
+                            jumoCount = 1;
+                        }
+                        else
+                        {
+                            jumoCount = 1;
+                        }
+                    }
+
+
+                    if (jumoCount == 1)
+                    {
+                        finalVelocity.y = JumpForce * jum1;
+                        jump = true;
+                    }
+                    else if (jumoCount == 2)
+                    {
+                        finalVelocity.y = JumpForce * jum2;
+                        jump = true;
+                    }
+                    else if (jumoCount == 3)
+                    {
+                        finalVelocity.y = JumpForce * jum3;
+                        jump = true;
+                    }
+                }
+                jump = true;
+            }
+            else
+            {
+                finalVelocity.y = direction.y * gravity * Time.deltaTime;
+                coyoteTime -= Time.deltaTime;
+                jump = false;
+            }
+
+            finalVelocity.y = direction.y * gravity * Time.deltaTime;
+            coyoteTime -= Time.deltaTime;
+            jump = false;
+
+            /*
             if (Input_Manager._INPUT_MANAGER.GetButtonSouthValue())
             {
                 finalVelocity.y = JumpForce;

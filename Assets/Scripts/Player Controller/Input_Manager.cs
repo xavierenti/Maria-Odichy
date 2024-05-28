@@ -97,4 +97,6 @@ public class Input_Manager : MonoBehaviour
     {
         return rightAxisValue;
     }
+
+
 }
