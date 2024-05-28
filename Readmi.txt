@@ -1,0 +1,4 @@
+El player ahora no salta
+los objetos no se recojen 
+y las otras funciones no se ejecutan 
+el codigo es funcional en el sentido de que tendria que ir pero no entiendo el porque no funciona nada
