@@ -12,10 +12,12 @@ public class Jumpad : MonoBehaviour
 
     private void Awake()
     {
+        //agarramos para saber quien es el player
         player = GameObject.FindGameObjectWithTag("Player");
     }
     private void OnCollisionEnter(Collision collision)
     {
+        //Llamamos al rebote del comando de SXBot
         if (collision.gameObject == player)
         {
             s_X_Bot.Rebotar(transform.up, reboundForce);

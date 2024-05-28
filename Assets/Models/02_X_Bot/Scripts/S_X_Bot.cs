@@ -169,6 +169,8 @@ public class S_X_Bot : MonoBehaviour
             */
         }
 
+        //Agacharse / agazaparse
+
         if (Input_Manager._INPUT_MANAGER.GetLeftShoulderValue() && controller.isGrounded)
         {
             Crunch = !Crunch;
@@ -195,12 +197,12 @@ public class S_X_Bot : MonoBehaviour
     {
         finalVelocity = jumpDirecton * jumpForce;
     }
-
+    //Muerte del player llamamos a la funcion de player has died de game manager
     public void Die()
     {
         GameManager._GAME_MANAGER.PlayerHasDied();
     }
-
+    //Animaciones
     public float GetCurrentSpeed()
     {
         return this.currentSpeed;

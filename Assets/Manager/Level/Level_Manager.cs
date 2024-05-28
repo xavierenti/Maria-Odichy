@@ -23,6 +23,6 @@ public class Level_Manager : MonoBehaviour
             GameManager._GAME_MANAGER.LevelPassed();
         }
     }
-
+    //cogemos las monedas
     public void GainCoin() => actualCoins++;
 }

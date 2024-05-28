@@ -16,9 +16,7 @@ public class Input_Manager : MonoBehaviour
     private Vector2 rightAxisValue = Vector2.zero;
 
 
-    public Vector3 puto;
-
-
+    //inicializamos y hacemos k no se destruya
     private void Awake()
     {
         if (_INPUT_MANAGER != null && _INPUT_MANAGER != this)
@@ -42,7 +40,7 @@ public class Input_Manager : MonoBehaviour
     }
 
 
-    // Update is called once per frame
+    // 
     void Update()
     {
         timeSinceJumpPressed += Time.deltaTime;

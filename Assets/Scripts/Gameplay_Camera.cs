@@ -16,6 +16,9 @@ public class Gameplay_Camera : MonoBehaviour
     private float rotationX;
     private float rotationY;
 
+    //hacemos que haga folow al objeto que le indiquemos
+    // le ponemos su pequeño retraso
+    // i su movimiento
     private void LateUpdate()
     {
         rotationX += Input_Manager._INPUT_MANAGER.GetRightAxisValue().y;

@@ -7,9 +7,9 @@ public class Coin : MonoBehaviour
     public float rotateSpeed = 1;
     private GameObject target;
 
-    // Update is called once per frame
     void Update()
     {
+        //Cogemos al player de la partida
         target = GameObject.FindGameObjectWithTag("Player");
         transform.Rotate(0, rotateSpeed, 0, Space.World);
     }
