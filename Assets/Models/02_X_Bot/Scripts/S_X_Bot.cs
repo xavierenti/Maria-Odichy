@@ -74,10 +74,9 @@ public class S_X_Bot : MonoBehaviour
         //Salto
 
         direction.y = -1f;
-
+        
         if (controller.isGrounded)
-        {
-            jump = false;
+        {/*
             if (Input_Manager._INPUT_MANAGER.GetButtonSouthValue())
             {
                 finalVelocity.y = JumpForce;
@@ -94,13 +93,14 @@ public class S_X_Bot : MonoBehaviour
             jump = false;
             finalVelocity.y += direction.y * gravity * Time.deltaTime;
             coyoteTime -= Time.deltaTime;
-
+            /*
             if (Input_Manager._INPUT_MANAGER.GetButtonSouthValue() && coyoteTime >= 0f)
             {
                 finalVelocity.y = JumpForce;
                 jump = true;
                 coyoteTime = 0f;
             }
+            */
         }
 
         if (Input_Manager._INPUT_MANAGER.GetLeftShoulderValue() && controller.isGrounded)
